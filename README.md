@@ -1,5 +1,7 @@
 # hackathon22-winter-03 frontend
 
+Vite + React + TS
+
 ## setup
 
 ```bash
