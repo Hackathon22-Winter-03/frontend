@@ -29,7 +29,7 @@ jobs:
       - name: install
         run: npm ci
       - name: build
-        run: npm run build
+        run: NODE_ENV="ci-build" npm run build
       - name: cache build
         uses: actions/cache@v2
         with:
