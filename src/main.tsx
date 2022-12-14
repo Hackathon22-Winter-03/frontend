@@ -7,6 +7,7 @@ import Problem, { loader as problemLoader, action as problemAction } from "./rou
 import Problems, { loader as problemsLoader, action as problemsAction } from "./routes/problems";
 import Ranking, { loader as rankingLoader, action as rankingAction } from "./routes/ranking";
 import User, { loader as userLoader, action as userAction } from "./routes/user";
+import "./main.css";
 
 const root = createBrowserRouter([
     {
