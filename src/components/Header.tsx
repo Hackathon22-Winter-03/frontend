@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 function Hackson() {
     return (
         <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900 text-3xl">
@@ -13,6 +14,7 @@ function Problems() {
         </Link>
     );
 }
+
 function Players() {
     return (
         <Link to="/ranking" className="text-base font-medium text-gray-500 hover:text-gray-900 text-3xl">
@@ -20,6 +22,7 @@ function Players() {
         </Link>
     );
 }
+
 function Home({ playerId }: { playerId: string }) {
     return (
         <Link to="/user" className="text-base font-medium text-gray-500 hover:text-gray-900 text-3xl">
@@ -30,7 +33,7 @@ function Home({ playerId }: { playerId: string }) {
 
 export default function Header({ playerId }: { playerId: string }) {
     return (
-        <div className="bg-slate-300   flex justify-between items-center text-white text-5xl">
+        <div className="bg-slate-300 flex justify-between items-center text-white text-5xl">
             <div className="px-4">
                 <Hackson />
             </div>
