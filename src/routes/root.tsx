@@ -15,7 +15,9 @@ const Root = () => {
     return (
         <>
             <Header playerId="hoge" />
-            <Outlet />
+            <div className="m-8">
+                <Outlet />
+            </div>
         </>
     );
 };
