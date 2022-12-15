@@ -1,4 +1,6 @@
 import { Outlet } from "react-router";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
 export async function action() {
     // TODO: implement for React Router
@@ -11,7 +13,12 @@ export async function loader() {
 }
 
 const Root = () => {
-    return <Outlet />;
+    return (
+        <>
+            <Header playerId="hoge" />
+            <Outlet />
+        </>
+    );
 };
 
 export default Root;
