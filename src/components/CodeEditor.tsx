@@ -1,8 +1,8 @@
 import Editor from "@monaco-editor/react";
-export default function CodeEditor() {
+export default function CodeEditor({ value, setValue }) {
     function handleEditorChange(value: string | void) {
         if (value) {
-            console.log(value);
+            setValue(value);
         }
     }
     return (
