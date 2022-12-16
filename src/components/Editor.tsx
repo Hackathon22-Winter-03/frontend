@@ -1,9 +1,10 @@
 import { useRemark } from "react-remark";
 import Editor from "@monaco-editor/react";
 
-function ExampleComponent({ reactContent }) {
+function Preview({ reactContent }) {
     return <>{reactContent}</>;
 }
+
 export default function MDEditor() {
     const [reactContent, setMarkdownSource] = useRemark();
     function handleEditorChange(value: string | void) {
@@ -20,7 +21,7 @@ export default function MDEditor() {
                 onChange={handleEditorChange}
                 defaultValue=""
             />
-            <ExampleComponent reactContent={reactContent} />
+            <Preview reactContent={reactContent} />
         </div>
     );
 }
