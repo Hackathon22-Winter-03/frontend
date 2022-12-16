@@ -22,9 +22,17 @@ export default function MDEditor({ value, setValue }) {
                 width="50%"
                 onChange={handleEditorChange}
                 defaultValue=""
+                options={{
+                    padding: {
+                        top: 5,
+                    },
+                }}
             />
-            <div>
-                <ReactMarkdown className="whitespace-pre " remarkPlugins={[remarkGemoji, remarkGfm, rehypeHighlight]}>
+            <div className="px-5 py-5">
+                <ReactMarkdown
+                    className="whitespace-pre inset-10"
+                    remarkPlugins={[remarkGemoji, remarkGfm, rehypeHighlight]}
+                >
                     {reactContent}
                 </ReactMarkdown>
             </div>
