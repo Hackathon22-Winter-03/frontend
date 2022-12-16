@@ -1,19 +1,21 @@
 import { useRemark } from "react-remark";
 import Editor from "@monaco-editor/react";
-import remarkGfm from 'https://esm.sh/remark-gfm@3';
 import { ReactElement } from "react";
+import remarkGemoji from "remark-gemoji";
 
-function Preview({ reactContent }:{reactContent:ReactElement|null}) {
-    return <div className='whitespace-pre'>{reactContent}</div>;
+function Preview({ reactContent }: { reactContent: ReactElement | null }) {
+    return <div className="whitespace-pre">{reactContent}</div>;
 }
 
-export default function MDEditor({value,setValue}) {
-    const [reactContent, setMarkdownSource] = useRemark();
+export default function MDEditor(/*{ value, setValue }*/) {
+    const [reactContent, setMarkdownSource] = useRemark({
+        remarkPlugins: [remarkGemoji],
+    });
     function handleEditorChange(value: string | void) {
         if (value) {
             console.log(value);
             setMarkdownSource(value);
-            setValue(value)
+            // setValue(value);
         }
     }
     return (
