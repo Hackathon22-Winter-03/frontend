@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 
 function Hackson() {
     return (
-        <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900 text-3xl">
+        <Link to="/" className="px-4 hover:text-gray-900 hover:underline">
             はっくしょん
         </Link>
     );
 }
+
 function Problems() {
     return (
-        <Link to="/problems" className="text-base font-medium text-gray-500 hover:text-gray-900  text-3xl">
+        <Link to="/problems" className="px-4 hover:text-gray-900 hover:underline">
             問題
         </Link>
     );
@@ -17,7 +18,7 @@ function Problems() {
 
 function Players() {
     return (
-        <Link to="/ranking" className="text-base font-medium text-gray-500 hover:text-gray-900 text-3xl">
+        <Link to="/ranking" className="px-4 hover:text-gray-900 hover:underline">
             プレイヤー
         </Link>
     );
@@ -25,7 +26,7 @@ function Players() {
 
 function Home({ playerId }: { playerId: string }) {
     return (
-        <Link to="/user" className="text-base font-medium text-gray-500 hover:text-gray-900 text-3xl">
+        <Link to="/user" className="px-4 hover:text-gray-900 hover:underline">
             {playerId}
         </Link>
     );
@@ -33,18 +34,13 @@ function Home({ playerId }: { playerId: string }) {
 
 export default function Header({ playerId }: { playerId: string }) {
     return (
-        <div className="bg-slate-300 flex justify-between items-center text-white text-5xl">
-            <div className="px-4">
+        <div className="bg-slate-300 flex items-stretch p-5 justify-between text-gray-500 text-xl">
+            <div className="items-start">
                 <Hackson />
-            </div>
-            <div className="px-8">
                 <Problems />
             </div>
-            <div className="px-16">
+            <div className="items-end">
                 <Players />
-            </div>
-
-            <div className="px-20">
                 <Home playerId={playerId} />
             </div>
         </div>
