@@ -79,12 +79,12 @@ const Root = () => {
         setAccessToken(getCookie("AccessToken") ?? "");
     }
     return (
-        <>
+        <div className="bg-[#faf8f8] text-[#191526]  min-h-screen">
             <Header userId={userId} />
-            <div className="m-8">
+            <div className="mx-40 my-10">
                 <Outlet />
             </div>
-        </>
+        </div>
     );
 };
 

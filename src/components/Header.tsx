@@ -7,10 +7,10 @@ export interface HeaderProp {
 const Header = ({ userId }: HeaderProp) => {
     // TODO: リダイレクトのリンクを指定
     return (
-        <div className="bg-slate-300 flex items-stretch p-5 justify-between text-gray-500 text-xl">
+        <div className="bg-white flex items-stretch p-5 justify-between text-gray-500 text-xl border-b border-gray-200">
             <div className="items-start">
-                <Link to="/" className="px-4 hover:text-gray-900 hover:underline">
-                    はっくしょん
+                <Link to="/" className="px-4 text-gray-600 hover:text-gray-900 hover:underline">
+                    Turing Qomplete
                 </Link>
                 <Link to="/problems" className="px-4 hover:text-gray-900 hover:underline">
                     問題

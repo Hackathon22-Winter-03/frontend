@@ -3,6 +3,7 @@ export default interface Problem {
     creatorId: string;
     score: number;
     title: string;
+    result: string;
     createdAt: number;
     updatedAt: number;
     deletedAt: number | undefined;
