@@ -6,7 +6,6 @@ import { useLocation } from "react-router";
 import { Apis as traq, Configuration } from "@traptitech/traq";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID || "client_id";
-console.log(`CLIENT_ID: ${CLIENT_ID}`);
 
 function isAuthorized(): boolean {
     const accessToken = getCookie("AccessToken");
