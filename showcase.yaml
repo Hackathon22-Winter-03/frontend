@@ -1,12 +1,9 @@
-type: runtime
-
+type: static
 startup: |
     npm install
-    npm run dev
-http_proxy: 5173
-https: hard
-work_dir: .
-cname:
-    - hackason03.trap.games
+    npm run build
+work_dir: dist
+https: "on"
+cname: [turing.trap.games]
 branch:
-    main: null
+    master: null

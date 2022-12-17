@@ -44,11 +44,11 @@ const Root = () => {
     if (!isAuthorized()) {
         const query = new URLSearchParams(useLocation().search);
         const authorizationCode = query.get("code");
-        if (!authorizationCode) {
-            const url = `https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}`;
-            window.location.href = url;
-            return <p>redirecting...</p>;
-        }
+        // if (!authorizationCode) {
+        //     const url = `https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}`;
+        //     window.location.href = url;
+        //     return <p>redirecting...</p>;
+        // }
         const url = "https://q.trap.jp/api/v3/oauth2/token";
         fetch(url, {
             method: "POST",
