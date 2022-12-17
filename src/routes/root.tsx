@@ -43,10 +43,10 @@ const Root = () => {
                 console.log(parsed);
             });
     }
-    const { state, redirect } = useLoaderData() as LoaderFunctionReturns;
-    if (state === "not authorized" && redirect) {
-        window.location.href = redirect;
-    }
+    // const { state, redirect } = useLoaderData() as LoaderFunctionReturns;
+    // if (state === "not authorized" && redirect) {
+    //     window.location.href = redirect;
+    // }
     return (
         <>
             <Header userId={"hoge"} />
