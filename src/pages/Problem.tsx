@@ -22,7 +22,7 @@ const Editor = ({ value, setValue }: CodeEditorProp) => (
 
 const Submission = () => (
     <div className="bg-yellow-200 rounded m-4 p-4 basis-full">
-        <h2 className="text-xl">提出</h2>
+        <h2>提出</h2>
     </div>
 );
 
@@ -31,7 +31,7 @@ const Problem = () => {
     const [code, setCode] = useState("");
     return (
         <>
-            <h1 className="text-4xl font-bold">{title}</h1>
+            <h1>{title}</h1>
             <div className="my-8 flex justify-between justify-items-stretch">
                 <div className="justify-self-start basis-1/2 flex flex-wrap">
                     <Description md="# 問題説明" />
