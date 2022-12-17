@@ -1,5 +1,6 @@
-type: runtime
-startup: npm install
-work_dir: .
-entrypoint: npm run dev
-http_proxy: 5173
+type: static
+startup: |
+    npm install
+    npm run build
+work_dir: dist
+http_proxy: 4173
