@@ -1,5 +1,5 @@
 import { getCookie, removeCookie, setCookie } from "typescript-cookie";
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import { useLocation } from "react-router";
 
@@ -21,8 +21,8 @@ export interface LoaderFunctionReturns {
 }
 
 export async function loader() {
-    // traQ OAuth 2.0用のアクセストークン取得
-    if (isAuthorized()) {
+    console.log(getCookie("AccessToken"));
+    if (!isAuthorized()) {
         removeCookie("AccessToken");
     }
     return null;
@@ -46,16 +46,22 @@ const Root = () => {
             },
             body: `grant_type=authorization_code&client_id=${CLIENT_ID}&code=${authorizationCode}`,
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) {
+                    console.error(res);
+                    return null;
+                }
+                return res.json();
+            })
             .then((parsed) => {
+                if (!parsed) return;
                 setCookie("AccessToken", parsed.access_token, {
-                    secure: true,
                     expires: 1,
                 });
                 console.log(parsed);
             })
             .catch((reason) => {
-                console.log(reason);
+                console.log("failed to fetch due to:", reason);
             });
     }
     return (
