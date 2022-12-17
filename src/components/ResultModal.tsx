@@ -3,12 +3,11 @@ import Modal from "react-modal";
 
 const customStyles = {
     content: {
-        top: "50%",
-        left: "75%",
-        right: "75%",
-        bottom: "30%",
-        marginRight: "-25%",
-        transform: "translate(-150%, -50%)",
+        height: 200,
+        width: 300,
+        position: "absolute",
+        top: "25%",
+        left: "25%",
     },
 };
 
