@@ -16,7 +16,7 @@ const Problems = ({ problems }: ProblemsProp) => (
             </tr>
         </thead>
         <tbody>
-            {problems.map(({ id, title, creatorId, creatorName, score }) => (
+            {problems.map(({ id, title, creatorName, score }) => (
                 <tr key={id} className="border-t">
                     <td className="p-1 text-blue-500">
                         <Link to={`/problem/${id}`} className="hover:underline">
@@ -29,7 +29,7 @@ const Problems = ({ problems }: ProblemsProp) => (
                         </Link>
                     </td>
                     <td className="p-1 text-blue-500">
-                        <Link to={`/user/${creatorId}`} className="hover:underline">
+                        <Link to={`/user/${creatorName}`} className="hover:underline">
                             {creatorName}
                         </Link>
                     </td>

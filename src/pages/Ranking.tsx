@@ -20,7 +20,7 @@ const Ranking = () => {
                         <tr key={user.id} className="border-t">
                             <td className="p-1">{i + 1}</td>
                             <td className="p-1 text-blue-500">
-                                <Link to={`/users/${user.name}`} className="hover:underline">
+                                <Link to={`/user/${user.name}`} className="hover:underline">
                                     {user.name}
                                 </Link>
                             </td>
