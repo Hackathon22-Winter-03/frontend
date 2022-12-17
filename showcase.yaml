@@ -7,4 +7,4 @@ http_proxy: 4173
 https: "on"
 branch:
     master:
-        cname: turing-qomplete.trap.games
+        cname: client.turing-qomplete.trap.games
