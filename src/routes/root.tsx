@@ -26,10 +26,6 @@ export async function loader(): Promise<LoaderFunctionReturns> {
 }
 
 const Root = () => {
-    const { state, redirect } = useLoaderData() as LoaderFunctionReturns;
-    if (state === "not authorized" && redirect) {
-        window.location.href = redirect;
-    }
     const query = new URLSearchParams(useLocation().search);
     const authorizationCode = query.get("code");
     if (authorizationCode) {
@@ -46,6 +42,10 @@ const Root = () => {
                 setCookie("AccessToken", parsed.access_token);
                 console.log(parsed);
             });
+    }
+    const { state, redirect } = useLoaderData() as LoaderFunctionReturns;
+    if (state === "not authorized" && redirect) {
+        window.location.href = redirect;
     }
     return (
         <>
