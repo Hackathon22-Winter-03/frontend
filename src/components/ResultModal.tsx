@@ -5,7 +5,6 @@ const customStyles = {
     content: {
         height: 200,
         width: 300,
-        position: "absolute",
         top: "25%",
         left: "25%",
     },
