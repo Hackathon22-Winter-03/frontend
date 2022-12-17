@@ -1,10 +1,13 @@
 export default interface Problem {
     id: string;
-    creatorId: string;
-    score: number;
+    text: string;
     title: string;
+    createdAt: string;
+    creatorId: string;
+    creatorName: string;
+    deletedAt: string | undefined;
+    updatedAt: string;
     result: string;
-    createdAt: number;
-    updatedAt: number;
-    deletedAt: number | undefined;
+    score: number;
+    language: string;
 }

@@ -1,45 +1,30 @@
+import { Apis, Configuration } from "@traptitech/traq";
+import axios from "axios";
+import { getCookie } from "typescript-cookie";
 import { default as ProblemsPage } from "../pages/Problems";
+import { default as ProblemModel } from "../models/Problem";
 
 export async function action() {
     // TODO: implement for React Router
     return null;
 }
 
-export async function loader() {
-    // TODO: implement for React Router
-    // this data is a sample
-    return [
-        {
-            id: "0xabcdef",
-            creatorId: "hackson",
-            score: 10,
-            title: "Hello, world",
-            result: "AC",
-            createdAt: 20221216,
-            updatedAt: 20221216,
-            deletedAt: undefined,
-        },
-        {
-            id: "0x012345",
-            creatorId: "hackson",
-            score: 50,
-            title: "hoge",
-            result: "WA",
-            createdAt: 20221216,
-            updatedAt: 20221216,
-            deletedAt: undefined,
-        },
-        {
-            id: "0x012345",
-            creatorId: "hackson",
-            score: 50,
-            title: "hoge",
-            result: "",
-            createdAt: 20221216,
-            updatedAt: 20221216,
-            deletedAt: undefined,
-        },
-    ];
+export async function loader(): Promise<ProblemModel[]> {
+    const token = getCookie("AccessToken") ?? "";
+    const api = new Apis(
+        new Configuration({
+            accessToken: token,
+        })
+    );
+    const me = await api.getMe();
+    const userId = me.data.id;
+    const formData = new FormData();
+    formData.append("userID", userId);
+    axios.defaults.baseURL = "https://turing-qomplete.trap.games/api";
+    const res = await axios.post("/problems", formData);
+    const problems = res.data as ProblemModel[];
+    console.log(problems);
+    return problems;
 }
 
 const Problems = () => {

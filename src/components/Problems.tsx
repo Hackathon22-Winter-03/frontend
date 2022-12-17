@@ -17,7 +17,7 @@ const Problems = ({ problems }: ProblemsProp) => (
                 </tr>
             </thead>
             <tbody>
-                {problems.map(({ id, title, creatorId, score, result }, index) =>
+                {problems.map(({ id, title, creatorName, score, result }, index) =>
                     result === "AC" ? (
                         <tr key={id} className="border-t bg-[#c3e6cb] border-b dark:bg-gray-900 dark:border-gray-700">
                             <td className="py-4 px-6 text-blue-500">
@@ -31,8 +31,8 @@ const Problems = ({ problems }: ProblemsProp) => (
                                 </Link>
                             </th>
                             <td className="py-4 px-6 text-blue-500">
-                                <Link to={`/user/${creatorId}`} className="hover:underline">
-                                    {creatorId}
+                                <Link to={`/user/${creatorName}`} className="hover:underline">
+                                    {creatorName}
                                 </Link>
                             </td>
                             <td className="py-4 px-6 text-gray-400">{score}</td>
@@ -50,8 +50,8 @@ const Problems = ({ problems }: ProblemsProp) => (
                                 </Link>
                             </th>
                             <td className="py-4 px-6 text-blue-500">
-                                <Link to={`/user/${creatorId}`} className="hover:underline">
-                                    {creatorId}
+                                <Link to={`/user/${creatorName}`} className="hover:underline">
+                                    {creatorName}
                                 </Link>
                             </td>
                             <td className="py-4 px-6 text-gray-400">{score}</td>
@@ -69,8 +69,8 @@ const Problems = ({ problems }: ProblemsProp) => (
                                 </Link>
                             </th>
                             <td className="py-4 px-6 text-blue-500">
-                                <Link to={`/user/${creatorId}`} className="hover:underline">
-                                    {creatorId}
+                                <Link to={`/user/${creatorName}`} className="hover:underline">
+                                    {creatorName}
                                 </Link>
                             </td>
                             <td className="py-4 px-6 text-gray-400">{score}</td>
@@ -88,8 +88,8 @@ const Problems = ({ problems }: ProblemsProp) => (
                                 </Link>
                             </th>
                             <td className="py-4 px-6 text-blue-500">
-                                <Link to={`/user/${creatorId}`} className="hover:underline">
-                                    {creatorId}
+                                <Link to={`/user/${creatorName}`} className="hover:underline">
+                                    {creatorName}
                                 </Link>
                             </td>
                             <td className="py-4 px-6 text-gray-400">{score}</td>

@@ -5,7 +5,6 @@ export interface HeaderProp {
 }
 
 const Header = ({ userId }: HeaderProp) => {
-    // TODO: リダイレクトのリンクを指定
     return (
         <div className="bg-white flex items-stretch p-5 justify-between text-gray-500 text-xl border-b border-gray-200">
             <div className="items-start">

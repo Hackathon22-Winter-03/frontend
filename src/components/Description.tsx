@@ -18,8 +18,6 @@ const md = `
 
 ここに説明
 `;
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement("#root");
 
 function Description() {
     const [modalIsOpen, setIsOpen] = React.useState(false);
