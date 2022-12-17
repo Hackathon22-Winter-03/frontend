@@ -1,9 +1,14 @@
-import { getCookie, setCookie } from "typescript-cookie";
+import { getCookie, removeCookie, setCookie } from "typescript-cookie";
 import { Outlet, useLoaderData } from "react-router-dom";
 import Header from "../components/Header";
 import { useLocation } from "react-router";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID || "client_id";
+
+function isAuthorized(): boolean {
+    const accessToken = getCookie("AccessToken");
+    return accessToken !== undefined && accessToken !== "undefined";
+}
 
 export async function action() {
     // TODO: implement for React Router
@@ -15,21 +20,25 @@ export interface LoaderFunctionReturns {
     redirect?: string;
 }
 
-export async function loader(): Promise<LoaderFunctionReturns> {
+export async function loader() {
     // traQ OAuth 2.0用のアクセストークン取得
-    const accessToken = getCookie("AccessToken");
-    if (accessToken) {
-        return { state: "authorized" };
+    if (isAuthorized()) {
+        removeCookie("AccessToken");
     }
-    const url = `https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}`;
-    return { state: "not authorized", redirect: url };
+    return null;
 }
 
 const Root = () => {
-    const query = new URLSearchParams(useLocation().search);
-    const authorizationCode = query.get("code");
-    if (authorizationCode) {
-        const url = `https://q.trap.jp/api/v3/oauth2/token`;
+    const authorized = isAuthorized();
+    if (!authorized) {
+        const query = new URLSearchParams(useLocation().search);
+        const authorizationCode = query.get("code");
+        if (!authorizationCode) {
+            const url = `https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=${CLIENT_ID}`;
+            window.location.href = url;
+            return <p>redirecting...</p>;
+        }
+        const url = "https://q.trap.jp/api/v3/oauth2/token";
         fetch(url, {
             method: "POST",
             headers: {
@@ -39,13 +48,15 @@ const Root = () => {
         })
             .then((res) => res.json())
             .then((parsed) => {
-                setCookie("AccessToken", parsed.access_token);
+                setCookie("AccessToken", parsed.access_token, {
+                    secure: true,
+                    expires: 1,
+                });
                 console.log(parsed);
+            })
+            .catch((reason) => {
+                console.log(reason);
             });
-    }
-    const { state, redirect } = useLoaderData() as LoaderFunctionReturns;
-    if (state === "not authorized" && redirect) {
-        window.location.href = redirect;
     }
     return (
         <>
