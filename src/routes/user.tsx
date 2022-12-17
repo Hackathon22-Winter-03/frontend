@@ -1,3 +1,4 @@
+import { LoaderFunctionArgs } from "react-router";
 import { default as UserPage } from "../pages/User";
 
 export async function action() {
@@ -5,9 +6,14 @@ export async function action() {
     return null;
 }
 
-export async function loader() {
+export interface LoaderFunctionReturns {
+    id: string;
+}
+
+export async function loader({ params }: LoaderFunctionArgs): Promise<LoaderFunctionReturns> {
     // TODO: implement for React Router
-    return null;
+    const id = params.id ?? "hoge";
+    return { id };
 }
 
 const User = () => {

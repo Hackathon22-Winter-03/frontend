@@ -27,11 +27,12 @@ const Submission = () => (
 );
 
 const Problem = () => {
-    const { title } = useLoaderData() as ProblemModel;
+    const { title, id } = useLoaderData() as ProblemModel;
     const [code, setCode] = useState("");
     return (
         <>
             <h1>{title}</h1>
+            <p>id: {id}</p>
             <div className="my-8 flex justify-between justify-items-stretch">
                 <div className="justify-self-start basis-1/2 flex flex-wrap">
                     <Description md="# 問題説明" />
