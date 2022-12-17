@@ -3,7 +3,7 @@ export default interface Code {
     userId: string;
     problemId: string;
     code: string;
-    answer: string;
+    result: string | undefined;
     createdAt: number;
     updatedAt: number;
     deletedAt: number | undefined;
