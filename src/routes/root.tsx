@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { getCookie, removeCookie, setCookie } from "typescript-cookie";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import { useLocation } from "react-router";
+import { Apis as traq, Configuration } from "@traptitech/traq";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID || "client_id";
 
@@ -16,12 +18,10 @@ export async function action() {
 }
 
 export interface LoaderFunctionReturns {
-    state: "not authorized" | "authorized";
-    redirect?: string;
+    userName: string | undefined;
 }
 
 export async function loader() {
-    console.log(getCookie("AccessToken"));
     if (!isAuthorized()) {
         removeCookie("AccessToken");
     }
@@ -29,8 +29,19 @@ export async function loader() {
 }
 
 const Root = () => {
-    const authorized = isAuthorized();
-    if (!authorized) {
+    const [userId, setUserId] = useState("userId is not set");
+    const setAccessToken = (token: string) => {
+        const api = new traq(
+            new Configuration({
+                accessToken: token,
+            })
+        );
+        api.getMe().then((res) => {
+            const userId = res.data.name;
+            setUserId(userId);
+        });
+    };
+    if (!isAuthorized()) {
         const query = new URLSearchParams(useLocation().search);
         const authorizationCode = query.get("code");
         if (!authorizationCode) {
@@ -54,19 +65,22 @@ const Root = () => {
                 return res.json();
             })
             .then((parsed) => {
-                if (!parsed) return;
-                setCookie("AccessToken", parsed.access_token, {
+                const token = parsed?.access_token;
+                if (!token) return;
+                setCookie("AccessToken", token, {
                     expires: 1,
                 });
-                console.log(parsed);
+                setAccessToken(token);
             })
             .catch((reason) => {
                 console.log("failed to fetch due to:", reason);
             });
+    } else {
+        setAccessToken(getCookie("AccessToken") ?? "");
     }
     return (
         <>
-            <Header userId={"hoge"} />
+            <Header userId={userId} />
             <div className="m-8">
                 <Outlet />
             </div>
