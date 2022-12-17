@@ -14,7 +14,7 @@ export async function loader() {
 const Root = () => {
     return (
         <>
-            <Header playerId="hoge" />
+            <Header userId={"hoge"} />
             <div className="m-8">
                 <Outlet />
             </div>
