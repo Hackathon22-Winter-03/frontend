@@ -12,21 +12,7 @@ const CodeEditor = ({ value, setValue }: CodeEditorProp) => {
         }
     }
 
-    return (
-        <div className="flex">
-            <Editor
-                defaultLanguage="JSON"
-                height="100vh"
-                onChange={handleEditorChange}
-                defaultValue={value}
-                options={{
-                    padding: {
-                        top: 5,
-                    },
-                }}
-            />
-        </div>
-    );
+    return <Editor defaultLanguage="JSON" onChange={handleEditorChange} defaultValue={value} />;
 };
 
 export default CodeEditor;
