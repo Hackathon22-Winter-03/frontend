@@ -11,6 +11,7 @@ export async function action() {
 export interface LoaderFunctionReturns {
     id: string;
     icon: Blob;
+    uuid: string;
 }
 
 export async function loader({ params }: LoaderFunctionArgs): Promise<LoaderFunctionReturns> {
@@ -26,12 +27,12 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<LoaderFunc
     if (!id) throw Error("error while fetching user UUID");
     const res = await api.getUserIcon(id);
     const icon = new Blob([res.data]);
-    return { id: name, icon: icon };
+    return { id: name, icon: icon, uuid: id };
 }
 
 const User = () => {
-    const { id, icon } = useLoaderData() as LoaderFunctionReturns;
-    return <UserPage id={id} icon={icon} />;
+    const { id, icon, uuid } = useLoaderData() as LoaderFunctionReturns;
+    return <UserPage id={id} icon={icon} uuid={uuid} />;
 };
 
 export default User;
