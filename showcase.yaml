@@ -3,6 +3,7 @@ type: runtime
 work_dir: src
 startup: |
     npm i
+    ls
 entrypoint: "npm run dev"
 http_proxy: 5173
 https: off
@@ -13,4 +14,4 @@ branch:
     h1rono:
         cname: h1rono.turing-qomplete.trap.games
     saitenn:
-        cname: saitenn.turing-qomplete.trap.games
+        cname: saiten.turing-qomplete.trap.games
