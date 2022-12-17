@@ -14,7 +14,6 @@ const Userpage = ({ id, icon, uuid }: UserProps) => {
     const [problems, getProblems] = useState<Array<ProblemAggregate>>([]);
     useEffect(() => {
         axios.post("/users/" + uuid).then((res) => {
-            console.log(res.data);
             getUser(res.data);
         });
     }, []);
@@ -30,6 +29,11 @@ const Userpage = ({ id, icon, uuid }: UserProps) => {
     return (
         <>
             <h1 className="relative top-0 left-0 ">{id}</h1>
+            <Problems
+                problems={problems.filter((problems) => {
+                    return problems.result === "AC";
+                })}
+            />
         </>
     );
 };
