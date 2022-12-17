@@ -1,7 +1,7 @@
 type: runtime
 startup: npm install
 work_dir: .
-entrypoint: npm run dev
+entrypoint: npm run production
 http_proxy: 5173
 https: "on"
 cname: [turing.trap.games]
