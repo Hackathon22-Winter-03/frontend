@@ -4,6 +4,6 @@ startup: |
     npm run build
 work_dir: dist
 https: "on"
-cname: [turing.trap.games]
+cname: [client.turing.trap.games]
 branch:
     master: null
