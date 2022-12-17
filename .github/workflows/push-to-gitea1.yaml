@@ -1,10 +1,10 @@
 ## gitea に同期する用の actions
-name: main
+name: saiten
 
 on:
     push:
         branches:
-            - "main"
+            - "saiten"
 
 env:
     GITEA_SSH_URL: "ssh://git@git.trap.jp:2200/Hackathon22-Winter-03/frontend.git"
@@ -63,4 +63,4 @@ jobs:
                   GIT_SSH_COMMAND: ssh -i ~/deploy_key.pem -o StrictHostKeyChecking=no -F /dev/null
               run: |
                   git fetch --unshallow origin
-                  git push -f ${{ env.GITEA_SSH_URL }} main:master
+                  git push -f ${{ env.GITEA_SSH_URL }} saiten:saiten
