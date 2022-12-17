@@ -28,7 +28,10 @@ const Userpage = ({ id, icon, uuid }: UserProps) => {
 
     return (
         <>
-            <h1 className="relative top-0 left-0 ">{id}</h1>
+            <div className="flex">
+                <h1 className="relative top-0 left-0 ">{id}</h1>
+                <h2 className="absolute top-13 right-10">score: {user.score}</h2>
+            </div>
             <Problems
                 problems={problems.filter((problems) => {
                     return problems.result === "AC";
