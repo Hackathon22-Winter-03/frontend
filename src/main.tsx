@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Modal from "react-modal";
 import Root, { loader as rootLoader, action as rootAction } from "./routes/root";
 import Index, { loader as indexLoader, action as indexAction } from "./routes/index";
 import Problem, { loader as problemLoader, action as problemAction } from "./routes/problem";
@@ -55,3 +56,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <RouterProvider router={root} />
     </React.StrictMode>
 );
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement("#root");
