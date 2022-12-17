@@ -42,7 +42,7 @@ const root = createBrowserRouter([
                 action: rankingAction,
             },
             {
-                path: "user/:id",
+                path: "user/:name",
                 element: <User />,
                 loader: userLoader,
                 action: userAction,

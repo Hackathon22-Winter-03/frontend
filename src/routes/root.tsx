@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import { useLocation } from "react-router";
 import { Apis as traq, Configuration } from "@traptitech/traq";
+import axios from "axios";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID || "client_id";
 
@@ -24,6 +25,31 @@ export interface LoaderFunctionReturns {
 export async function loader() {
     if (!isAuthorized()) {
         removeCookie("AccessToken");
+        return null;
+    }
+    const token = getCookie("AccessToken");
+    const api = new traq(
+        new Configuration({
+            accessToken: token,
+        })
+    );
+    const me = await api.getMe();
+    const id = me.data.id;
+    if (!id) throw Error("error while fetching user UUID");
+    const formData = new FormData();
+    formData.append("userID", id);
+    axios.defaults.baseURL = "https://turing-qomplete.trap.games/api";
+    const res = await fetch(`https://turing-qomplete.trap.games/api/users/${id}`, {
+        method: "POST",
+        body: formData,
+    });
+    console.log(res.status);
+    if (res.status != 200) {
+        console.log("create");
+        formData.append("id", id);
+        formData.append("name", me.data.name);
+        formData.append("name", me.data.bio);
+        await axios.post("/users/create", formData);
     }
     return null;
 }
@@ -79,12 +105,12 @@ const Root = () => {
         setAccessToken(getCookie("AccessToken") ?? "");
     }
     return (
-        <>
+        <div className="bg-[#faf8f8] text-[#191526]  min-h-screen">
             <Header userId={userId} />
-            <div className="m-8">
+            <div className="mx-40 my-10">
                 <Outlet />
             </div>
-        </>
+        </div>
     );
 };
 
