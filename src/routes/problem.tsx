@@ -16,9 +16,13 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<ProblemMod
         creatorId: "hackson",
         score: 10,
         title: "Hello, world",
-        createdAt: 20221216,
-        updatedAt: 20221216,
+        createdAt: new Date().toDateString(),
+        updatedAt: new Date().toDateString(),
         deletedAt: undefined,
+        text: "sample",
+        creatorName: "anko",
+        language: "markov",
+        result: "",
     };
 }
 
