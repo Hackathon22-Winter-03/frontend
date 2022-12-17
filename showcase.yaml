@@ -1,17 +1,10 @@
-type: runtime
-
-work_dir: .
 startup: |
-    npm i
-    echo *
-entrypoint: "npm run dev"
+    npm install
+    npm run dev
 http_proxy: 5173
-https: off
-
+https: hard
+work_dir: .
+cname:
+    - hackason03.trap.games
 branch:
-    master:
-        cname: client.turing-qomplete.trap.games
-    h1rono:
-        cname: h1rono.turing-qomplete.trap.games
-    saitenn:
-        cname: saiten.turing-qomplete.trap.games
+    main: null
