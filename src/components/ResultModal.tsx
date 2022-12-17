@@ -3,14 +3,12 @@ import Modal from "react-modal";
 
 const customStyles = {
     content: {
-        height: 200,
-        width: 300,
+        height: "50%",
+        width: "50%",
         top: "25%",
         left: "25%",
     },
 };
-
-Modal.setAppElement("#root");
 
 function ResultModal({
     result,
