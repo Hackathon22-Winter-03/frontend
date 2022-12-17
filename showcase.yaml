@@ -3,7 +3,6 @@ startup: |
     npm install
     npm run build
 work_dir: dist
-http_proxy: 4173
 https: "on"
 branch:
     master:
