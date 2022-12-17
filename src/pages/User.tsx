@@ -32,6 +32,7 @@ const Userpage = ({ id, icon, uuid }: UserProps) => {
                 <h1 className="relative top-0 left-0 ">{id}</h1>
                 <h2 className="absolute top-13 right-10">score: {user.score}</h2>
             </div>
+            <p className="text-gray-400">{user.comment}</p>
             <Problems
                 problems={problems.filter((problems) => {
                     return problems.result === "AC";
