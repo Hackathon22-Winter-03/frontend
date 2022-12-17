@@ -6,7 +6,7 @@ const Problems = () => {
     const problems: ProblemModel[] = useLoaderData() as ProblemModel[];
     return (
         <>
-            <h1 className="text-3xl">問題集</h1>
+            <h1 className="text-4xl font-bold">問題集</h1>
             <table className="border-collapse my-8 min-w-full text-black">
                 <thead className="border-b-2">
                     <tr className="text-left">
