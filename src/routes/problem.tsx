@@ -10,7 +10,7 @@ export async function action() {
     return null;
 }
 
-export async function loader({ params }: LoaderFunctionArgs): Promise<ProblemModel> {
+export async function loader({ params }: LoaderFunctionArgs): Promise<{ problem: ProblemModel; userId: string }> {
     const id = params.id ?? "0";
     const token = getCookie("AccessToken") ?? "";
     const api = new Apis(
@@ -26,7 +26,7 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<ProblemMod
     const res = await axios.post(`/problems/${id}`, formData);
     console.log(res.data);
     const problem = res.data as ProblemModel;
-    return problem;
+    return { problem, userId };
     // this data is sample
     // return {
     //     id: id,

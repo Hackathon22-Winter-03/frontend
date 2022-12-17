@@ -12,7 +12,17 @@ const CodeEditor = ({ value, setValue }: CodeEditorProp) => {
         }
     }
 
-    return <Editor defaultLanguage="JSON" onChange={handleEditorChange} defaultValue={value} />;
+    return (
+        <div className="bg-yellow-200 rounded m-4 p-4 justify-self-end basis-1/2 min-h-screen">
+            <Editor
+                height="100vh"
+                width="100%"
+                defaultLanguage="JSON"
+                onChange={handleEditorChange}
+                defaultValue={value}
+            />
+        </div>
+    );
 };
 
 export default CodeEditor;
