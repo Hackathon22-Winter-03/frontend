@@ -1,9 +1,9 @@
 type: runtime
 
-work_dir: src
+work_dir: .
 startup: |
     npm i
-    ls
+    echo *
 entrypoint: "npm run dev"
 http_proxy: 5173
 https: off
