@@ -1,12 +1,5 @@
 type: runtime
-
-startup: |
-    npm install
-    npm run dev
-http_proxy: 5173
-https: hard
+startup: npm install
 work_dir: .
-cname:
-    - hackason03.trap.games
-branch:
-    main: null
+entrypoint: npm run dev
+http_proxy: 5173
