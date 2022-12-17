@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import User from "../models/User";
-import ProblemAggregate from "../models/ProblemAggregate";
+import Problemlist from "../models/Problem";
 import Problems from "../components/Problems";
 axios.defaults.baseURL = "https://turing-qomplete.trap.games/api";
 export interface UserProps {
@@ -11,7 +11,7 @@ export interface UserProps {
 }
 const Userpage = ({ id, icon, uuid }: UserProps) => {
     const [user, getUser] = useState<Array<User>>([]);
-    const [problems, getProblems] = useState<Array<ProblemAggregate>>([]);
+    const [problems, getProblems] = useState<Array<Problemlist>>([]);
     useEffect(() => {
         axios.post("/users/" + uuid).then((res) => {
             getUser(res.data);
