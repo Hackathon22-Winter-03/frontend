@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router";
-import { LoaderFunctionReturns } from "../routes/user";
+export interface UserProps {
+    id: string;
+    icon: Blob;
+}
 
-const User = () => {
-    const { id } = useLoaderData() as LoaderFunctionReturns;
-    return <h1>This is the user {id} page.</h1>;
+const User = ({ id, icon }: UserProps) => {
+    return <h1>User {id}</h1>;
 };
 
 export default User;
