@@ -6,7 +6,11 @@ const Problems = () => {
     const problems: ProblemModel[] = useLoaderData() as ProblemModel[];
     return (
         <>
-            <h1>問題集</h1>
+            <h2 className="font-mono my-5">CHALLENGES</h2>
+            <div></div>
+            <p className="font-body">
+                さまざまな計算モデルを用いて問題を解いていき、チューリング完全な言語を目指そう！ Markov Algorithm や
+            </p>
             <ProblemsTable problems={problems} />
         </>
     );
