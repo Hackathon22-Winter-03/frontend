@@ -1,3 +1,4 @@
+import { LoaderFunctionArgs } from "react-router";
 import { default as ProblemPage } from "../pages/Problem";
 import { default as ProblemModel } from "../models/Problem";
 
@@ -6,11 +7,12 @@ export async function action() {
     return null;
 }
 
-export async function loader(): Promise<ProblemModel> {
+export async function loader({ params }: LoaderFunctionArgs): Promise<ProblemModel> {
     // TODO: implement for React Router
+    const id = params.id ?? "hoge";
     // this data is sample
     return {
-        id: "0xabcdef",
+        id: id,
         creatorId: "hackson",
         score: 10,
         title: "Hello, world",

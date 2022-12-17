@@ -23,7 +23,7 @@ const root = createBrowserRouter([
                 action: indexAction,
             },
             {
-                path: "problem",
+                path: "problem/:id",
                 element: <Problem />,
                 loader: problemLoader,
                 action: problemAction,
@@ -41,7 +41,7 @@ const root = createBrowserRouter([
                 action: rankingAction,
             },
             {
-                path: "user",
+                path: "user/:id",
                 element: <User />,
                 loader: userLoader,
                 action: userAction,
