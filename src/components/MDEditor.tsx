@@ -1,19 +1,22 @@
 import Editor from "@monaco-editor/react";
-import { useState } from "react";
 import remarkGemoji from "remark-gemoji";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 
-export default function MDEditor({ value, setValue }) {
-    const [reactContent, setMarkdownSource] = useState<string>("");
-    function handleEditorChange(value: string | void) {
-        if (value) {
-            console.log(value);
-            setMarkdownSource(value);
-            setValue(value);
+export interface MDEditorProp {
+    value: string;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function MDEditor({ value, setValue }: MDEditorProp) {
+    function handleEditorChange(newValue: string | undefined) {
+        if (newValue !== undefined) {
+            console.log(newValue);
+            setValue(newValue);
         }
     }
+
     return (
         <div className="flex">
             <Editor
@@ -21,7 +24,7 @@ export default function MDEditor({ value, setValue }) {
                 height="100vh"
                 width="50%"
                 onChange={handleEditorChange}
-                defaultValue=""
+                defaultValue={value}
                 options={{
                     padding: {
                         top: 5,
@@ -33,7 +36,7 @@ export default function MDEditor({ value, setValue }) {
                     className="whitespace-pre inset-10"
                     remarkPlugins={[remarkGemoji, remarkGfm, rehypeHighlight]}
                 >
-                    {reactContent}
+                    {value}
                 </ReactMarkdown>
             </div>
         </div>

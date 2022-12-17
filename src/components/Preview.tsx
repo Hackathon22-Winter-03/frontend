@@ -1,7 +1,9 @@
-import { useRemarkSync } from 'react-remark';
-function Preview(value:string){
+import { useRemarkSync } from "react-remark";
+
+const Preview = (value: string) => {
     const reactContent = useRemarkSync(value);
-  
+
     return reactContent;
 };
+
 export default Preview;
