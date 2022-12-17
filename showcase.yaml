@@ -9,4 +9,8 @@ https: on
 
 branch:
     master:
-        cname: turing-qomplete.trap.games
+        cname: client.turing-qomplete.trap.games
+    h1rono:
+        cname: h1rono.turing-qomplete.trap.games
+    saitenn:
+        cname: saitenn.turing-qomplete.trap.games
