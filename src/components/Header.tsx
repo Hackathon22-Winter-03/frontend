@@ -9,18 +9,18 @@ const Header = ({ userId }: HeaderProp) => {
     return (
         <div className="bg-white flex items-stretch p-5 justify-between text-gray-500 text-xl border-b border-gray-200">
             <div className="items-start">
-                <Link to="/" className="px-4 text-gray-600 hover:text-gray-900 hover:underline">
+                <Link to="/" className="px-6 text-gray-600 hover:text-gray-900 hover:underline">
                     Turing Qomplete
                 </Link>
-                <Link to="/problems" className="px-4 hover:text-gray-900 hover:underline">
+                <Link to="/problems" className="px-6 hover:text-gray-900 hover:underline">
                     問題
                 </Link>
             </div>
             <div className="items-end">
-                <Link to="/ranking" className="px-4 hover:text-gray-900 hover:underline">
+                <Link to="/ranking" className="px-6 hover:text-gray-900 hover:underline">
                     ランキング
                 </Link>
-                <Link to={`/user/${userId}`} className="px-4 hover:text-gray-900 hover:underline">
+                <Link to={`/user/${userId}`} className="px-6 hover:text-gray-900 hover:underline">
                     {userId}
                 </Link>
             </div>
