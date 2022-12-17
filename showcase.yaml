@@ -4,6 +4,6 @@ startup: |
     npm run build
 work_dir: dist
 https: "on"
-cname: [client.turing-qomplete.trap.games]
+cname: [abcd.trap.games]
 branch:
     master: null
