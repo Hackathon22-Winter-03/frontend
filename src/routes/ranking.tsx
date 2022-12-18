@@ -23,7 +23,16 @@ export async function loader(): Promise<UserModel[]> {
     axios.defaults.baseURL = "https://turing-qomplete.trap.games/api";
     const res = await axios.post("/users", formData);
     const users = res.data as UserModel[];
-    return users.sort((a, b) => b.score - a.score);
+    return users.sort((a, b) => {
+        let res = b.score - a.score;
+        if (res != 0) return res;
+        const len = Math.min(a.name.length, b.name.length);
+        for (let i = 0; i < len; ++i) {
+            res = a.name.charCodeAt(i) - b.name.charCodeAt(i);
+            if (res != 0) return res;
+        }
+        return res;
+    });
 }
 
 const Ranking = () => {
