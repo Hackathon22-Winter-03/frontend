@@ -27,8 +27,7 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<LoaderFunc
             accessToken: accessToken,
         })
     );
-    // const name = params.name ?? "traP";
-    const user = await api.getMe();
+    const user = await api.getUser(params.name ?? "");
     const { id, name, bio } = user.data;
 
     const formData = new FormData();
@@ -46,8 +45,9 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<LoaderFunc
     }
     const problemsRes = await axios.post(`/problems`, formData);
     const problems = problemsRes.data as ProblemModel[];
+    console.log(problems);
     return {
-        name: name,
+        name: user.data.name,
         uuid: id,
         user: userData as unknown as UserModel,
         problems: problems,

@@ -56,6 +56,7 @@ export async function loader() {
 
 const Root = () => {
     const [userId, setUserId] = useState("userId is not set");
+    const [userName, setUserName] = useState("userName is not set");
     const setAccessToken = (token: string) => {
         const api = new traq(
             new Configuration({
@@ -63,8 +64,8 @@ const Root = () => {
             })
         );
         api.getMe().then((res) => {
-            const userId = res.data.name;
-            setUserId(userId);
+            setUserId(res.data.id);
+            setUserName(res.data.name);
         });
     };
     if (!isAuthorized()) {
@@ -106,7 +107,7 @@ const Root = () => {
     }
     return (
         <div className="bg-[#faf8f8] text-[#191526]  min-h-screen">
-            <Header userId={userId} />
+            <Header userId={userId} userName={userName} />
             <div className="mx-40 my-10">
                 <Outlet />
             </div>
