@@ -13,7 +13,7 @@ const CodeEditor = ({ value, setValue }: CodeEditorProp) => {
     }
 
     return (
-        <div className="bg-yellow-200 rounded m-4 p-4 justify-self-end basis-1/2 min-h-screen">
+        <div className="bg-[#e8f6f0] border-[#49cc90] border-2 rounded m-4 p-4 justify-self-end basis-1/2 min-h-screen">
             <Editor
                 height="100vh"
                 width="100%"
