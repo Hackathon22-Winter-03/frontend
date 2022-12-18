@@ -8,9 +8,7 @@ const Problems = () => {
         <>
             <h2 className="font-mono my-5">CHALLENGES</h2>
             <div></div>
-            <p className="font-body">
-                さまざまな計算モデルを用いて問題を解いていき、チューリング完全な言語を目指そう！ Markov Algorithm や
-            </p>
+            <p className="font-body">さまざまな計算モデルを用いて問題を解いていき、チューリング完全を示そう！</p>
             <ProblemsTable problems={problems} />
         </>
     );
