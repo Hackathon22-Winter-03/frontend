@@ -45,11 +45,10 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<LoaderFunc
     }
     const problemsRes = await axios.post(`/problems`, formData);
     const problems = problemsRes.data as ProblemModel[];
-    console.log(problems);
     return {
         name: user.data.name,
         uuid: id,
-        user: userData as unknown as UserModel,
+        user: userData.data as unknown as UserModel,
         problems: problems,
     };
 }

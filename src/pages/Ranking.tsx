@@ -6,7 +6,7 @@ const Ranking = () => {
     const users = useLoaderData() as UserModel[];
     return (
         <>
-            <h2 className="font-mono">RANKING</h2>
+            <h2 className="font-mono my-5">RANKING</h2>
             <div className="overflow-x-auto relative sm:rounded-lg">
                 <table className="border-collapse bg-white my-8 min-w-full text-left rounded-lg">
                     <thead className="border-b-2">
