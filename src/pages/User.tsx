@@ -6,8 +6,8 @@ const Userpage = () => {
     const { name, user, problems } = useLoaderData() as LoaderFunctionReturns;
     return (
         <>
-            <div className="flex">
-                <h1 className="flex-none">{name}</h1>
+            <div className="flex my-5">
+                <h1 className="flex-none">{name}&apos;s Profile</h1>
                 <div className="flex-auto"></div>
                 <h2 className="flex-initial">score: {user.score}</h2>
             </div>

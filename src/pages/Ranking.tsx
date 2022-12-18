@@ -6,29 +6,49 @@ const Ranking = () => {
     const users = useLoaderData() as UserModel[];
     return (
         <>
-            <h1>ランキング</h1>
-            <table className="border-collapse my-8 min-w-full text-black">
-                <thead className="border-b-2">
-                    <tr className="text-left">
-                        <th className="p-1">順位</th>
-                        <th className="p-1">名前</th>
-                        <th className="p-1">スコア</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map((user: UserModel, i: number) => (
-                        <tr key={user.id} className="border-t">
-                            <td className="p-1">{i + 1}</td>
-                            <td className="p-1 text-blue-500">
-                                <Link to={`/user/${user.name}`} className="hover:underline">
-                                    {user.name}
-                                </Link>
-                            </td>
-                            <td className="p-1">{user.score}</td>
+            <h2 className="font-mono my-5">RANKING</h2>
+            <div className="overflow-x-auto relative sm:rounded-lg">
+                <table className="border-collapse bg-white my-8 min-w-full text-left rounded-lg">
+                    <thead className="border-b-2">
+                        <tr>
+                            <th className="py-3 px-6">順位</th>
+                            <th className="py-3 px-6">名前</th>
+                            <th className="py-3 px-6">スコア</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users.map((user: UserModel, index: number) =>
+                            index % 2 === 0 ? (
+                                <tr
+                                    key={user.id}
+                                    className="border-t bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                                >
+                                    <td className="py-4 px-6">{index + 1}</td>
+                                    <td className="py-4 px-6 text-blue-500">
+                                        <Link to={`/user/${user.id}`} className="hover:underline">
+                                            {user.name}
+                                        </Link>
+                                    </td>
+                                    <th className="py-4 px-6">{user.score}</th>
+                                </tr>
+                            ) : (
+                                <tr
+                                    key={user.id}
+                                    className="border-t bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700"
+                                >
+                                    <td className="py-4 px-6">{index + 1}</td>
+                                    <td className="py-4 px-6 text-blue-500">
+                                        <Link to={`/user/${user.id}`} className="hover:underline">
+                                            {user.name}
+                                        </Link>
+                                    </td>
+                                    <th className="py-4 px-6">{user.score}</th>
+                                </tr>
+                            )
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 };
