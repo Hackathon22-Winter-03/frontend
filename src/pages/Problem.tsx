@@ -22,6 +22,7 @@ const Problem = () => {
     const { problem, userId } = useLoaderData() as { problem: ProblemModel; userId: string };
     const [code, setCode] = useState("");
     const [input, setInput] = useState("");
+    const [textModal, setTextModal] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const inputRef = useRef(input);
     inputRef.current = input;
@@ -44,7 +45,6 @@ const Problem = () => {
         const loop = async () => {
             bodyFormData.set("state", inputRef.current);
             const res = await axios.post("/step", bodyFormData);
-            console.log(res.data);
             setInput(res.data.output);
             bodyFormData.set("state", inputRef.current);
             if (res.data.isEnded !== true) {
@@ -60,7 +60,10 @@ const Problem = () => {
         formData.append("code", code);
 
         const res = await axios.post("/problems/" + problem.id + "/submit", formData);
-        console.log(res);
+        console.log(res.data);
+        setTextModal(res.data.result);
+
+        setOpenModal(true);
     };
 
     return (
@@ -94,7 +97,7 @@ const Problem = () => {
                 </div>
                 <CodeEditor value={code} setValue={setCode} />
             </div>
-            <ResultModal result={status} modalIsOpen={openModal} setIsOpen={setOpenModal} />
+            <ResultModal result={textModal} modalIsOpen={openModal} setIsOpen={setOpenModal} />
         </>
     );
 };
