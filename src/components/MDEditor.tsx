@@ -3,6 +3,9 @@ import remarkGemoji from "remark-gemoji";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 
 export interface MDEditorProp {
     value: string;
@@ -34,7 +37,8 @@ export default function MDEditor({ value, setValue }: MDEditorProp) {
             <div className="px-5 py-5">
                 <ReactMarkdown
                     className="whitespace-pre inset-10"
-                    remarkPlugins={[remarkGemoji, remarkGfm, rehypeHighlight]}
+                    remarkPlugins={[remarkMath, remarkGemoji, remarkGfm, rehypeHighlight]}
+                    rehypePlugins={[rehypeKatex]}
                 >
                     {value}
                 </ReactMarkdown>
