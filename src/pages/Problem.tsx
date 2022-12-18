@@ -54,6 +54,15 @@ const Problem = () => {
         await loop();
     };
 
+    const submit = async () => {
+        const formData = new FormData();
+        formData.append("userID", userId);
+        formData.append("code", code);
+
+        const res = await axios.post("/problems/" + problem.id + "/submit", formData);
+        console.log(res);
+    };
+
     return (
         <>
             <h2>{problem.title}</h2>
@@ -72,12 +81,7 @@ const Problem = () => {
                         />
                     </div>
                     <>
-                        <button
-                            className="bg-green-500 w-1/4 h-8 my-3 mr-3 rounded"
-                            onClick={() => {
-                                setOpenModal(true);
-                            }}
-                        >
+                        <button className="bg-green-500 w-1/4 h-8 my-3 mr-3 rounded" onClick={submit}>
                             提出
                         </button>
                         <button className="bg-blue-500 w-1/4 h-8 my-3 mr-3 rounded" onClick={excute}>
