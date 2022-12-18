@@ -7,15 +7,12 @@ const Userpage = () => {
     return (
         <>
             <div className="flex">
-                <h1 className="relative top-0 left-0 ">{name}</h1>
-                <h2 className="absolute top-13 right-10">score: {user.score}</h2>
+                <h1 className="flex-none">{name}</h1>
+                <div className="flex-auto"></div>
+                <h2 className="flex-initial">score: {user.score}</h2>
             </div>
             <p className="text-gray-400">{user.comment}</p>
-            <Problems
-                problems={problems.filter((problems) => {
-                    return problems.result === "AC";
-                })}
-            />
+            <Problems problems={problems} />
         </>
     );
 };
