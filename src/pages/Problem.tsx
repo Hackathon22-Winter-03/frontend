@@ -24,19 +24,24 @@ const Problem = () => {
     const [input, setInput] = useState("");
     const [textModal, setTextModal] = useState("");
     const [openModal, setOpenModal] = useState(false);
+    const [isTerminated, setIsTerminated] = useState(false);
     const inputRef = useRef(input);
+    const isTerminatedRef = useRef(isTerminated);
     inputRef.current = input;
 
     const nextStep = async () => {
+        if (isTerminated === true) return;
         const bodyFormData = new FormData();
         bodyFormData.append("code", code);
         bodyFormData.append("state", input);
         bodyFormData.append("problemID", problem.id);
         const res = await axios.post("/step", bodyFormData);
         setInput(res.data.output);
+        setIsTerminated(res.data.isEnded);
     };
 
     const excute = async () => {
+        if (isTerminated === true) return;
         const bodyFormData = new FormData();
         bodyFormData.append("id", userId);
         bodyFormData.append("code", code);
@@ -46,8 +51,9 @@ const Problem = () => {
             bodyFormData.set("state", inputRef.current);
             const res = await axios.post("/step", bodyFormData);
             setInput(res.data.output);
+            setIsTerminated(res.data.isEnded);
             bodyFormData.set("state", inputRef.current);
-            if (res.data.isEnded !== true) {
+            if (isTerminatedRef.current !== true) {
                 setTimeout(loop, 500);
             }
         };
@@ -78,7 +84,10 @@ const Problem = () => {
                         <input
                             type="text"
                             value={input}
-                            onChange={(e) => setInput(e.target.value)}
+                            onChange={(e) => {
+                                setInput(e.target.value);
+                                setIsTerminated(false);
+                            }}
                             id="source"
                             className="w-full h-8 my-3 font-mono"
                         />
