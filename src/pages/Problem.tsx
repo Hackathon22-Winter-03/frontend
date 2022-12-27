@@ -25,12 +25,21 @@ const Problem = () => {
     const [textModal, setTextModal] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const [isTerminated, setIsTerminated] = useState(false);
+    const [isExcuted, setIsExcuted] = useState(false);
+
     const inputRef = useRef(input);
     const isTerminatedRef = useRef(isTerminated);
+    const isExcutedRef = useRef(isExcuted);
+
     inputRef.current = input;
 
     const nextStep = async () => {
         if (isTerminated === true) return;
+        if (isExcuted) {
+            setIsExcuted(false);
+            return;
+        }
+
         const bodyFormData = new FormData();
         bodyFormData.append("code", code);
         bodyFormData.append("state", input);
@@ -42,6 +51,13 @@ const Problem = () => {
 
     const excute = async () => {
         if (isTerminated === true) return;
+        if (isExcuted) {
+            setIsExcuted(false);
+            return;
+        } else {
+            setIsExcuted(true);
+        }
+
         const bodyFormData = new FormData();
         bodyFormData.append("id", userId);
         bodyFormData.append("code", code);
@@ -53,7 +69,7 @@ const Problem = () => {
             setInput(res.data.output);
             setIsTerminated(res.data.isEnded);
             bodyFormData.set("state", inputRef.current);
-            if (isTerminatedRef.current !== true) {
+            if (isTerminatedRef.current !== true && isExcutedRef.current === true) {
                 setTimeout(loop, 500);
             }
         };
@@ -97,7 +113,7 @@ const Problem = () => {
                             提出
                         </button>
                         <button className="bg-blue-500 w-1/4 h-8 my-3 mr-3 rounded" onClick={excute}>
-                            実行
+                            {isExcuted ? "停止" : "実行"}
                         </button>
                         <button className="bg-orange-500 w-1/4 h-8 my-3 mr-3 rounded" onClick={nextStep}>
                             ステップ
